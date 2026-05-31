@@ -2,6 +2,8 @@
 
 # FreeLLMAPI
 
+> **Hey!** This is **not** the original project. It's just a personal workaround fork of [FreeLLMAPI by tashfeenahmed](https://github.com/tashfeenahmed/freellmapi), tweaked to use **pnpm** instead of npm. Go check out the original — all credit belongs to the author.
+
 **One OpenAI-compatible endpoint. Twelve free LLM providers. ~1B+ tokens per month.**
 
 Aggregate the free tiers from Google, Groq, Cerebras, SambaNova, NVIDIA, Mistral, OpenRouter, GitHub Models, Cohere, Cloudflare, HuggingFace, and Z.ai (Zhipu) behind a single `/v1/chat/completions` endpoint. Keys are stored encrypted. A router picks the best available model for each request, falls over to the next provider when one is rate-limited, and tracks per-key usage so you stay under every free-tier cap.
@@ -92,19 +94,19 @@ PRs that add any of these are very welcome. See [Contributing](#contributing).
 
 ## Quick start
 
-**Prerequisites:** Node.js 20+, npm.
+**Prerequisites:** Node.js 20+, pnpm.
 
 ```bash
 git clone https://github.com/tashfeenahmed/freellmapi.git
 cd freellmapi
-npm install
+pnpm install
 
 # Generate an encryption key for at-rest key storage
 cp .env.example .env
 echo "ENCRYPTION_KEY=$(node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")" >> .env
 
 # Start server + dashboard together
-npm run dev
+pnpm run dev
 ```
 
 `ENCRYPTION_KEY` is required for startup. The server only falls back to a
@@ -116,7 +118,7 @@ Open http://localhost:5173 (the Vite dev UI), add your provider keys on the **Ke
 For a production build:
 
 ```bash
-npm run build
+pnpm run build
 node server/dist/index.js     # server + dashboard both served on :3001
 ```
 
@@ -284,10 +286,10 @@ Contributors very welcome! Good first PRs:
 **Development loop:**
 
 ```bash
-npm install
-npm run dev      # server on :3001, dashboard on :5173, both with HMR
-npm test         # server vitest; also runs client tests if the workspace adds them
-npm run build    # compile server and dashboard
+pnpm install
+pnpm run dev      # server on :3001, dashboard on :5173, both with HMR
+pnpm test         # server vitest; also runs client tests if the workspace adds them
+pnpm run build    # compile server and dashboard
 ```
 
 PRs should include a test, keep the existing test suite green, and match the `.editorconfig` / tsconfig defaults already in the repo. Issues and discussions are open.
